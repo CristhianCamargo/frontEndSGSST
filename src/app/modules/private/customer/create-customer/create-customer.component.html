@@ -1,0 +1,217 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h3>Creación de usuarios</h3>
+  </section>
+  <section class="content">
+    <form [formGroup]="formCustomer" (ngSubmit)="create()">
+      <div class="form-group">
+        <div class="card">
+          <div class="card-body">
+            <h4>Datos personales</h4>
+            <div class="row">
+              <div class="col-md-6">
+                <label style="font-weight: lighter">Nombres</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="customer_firstname"
+                  />
+                  <div class="input-group-append">
+                    <span
+                      class="input-group-text span-error-message"
+                      *ngIf="invalidInput('customer_firstname')"
+                    >
+                      Nombre no puede estar vacío
+                    </span>
+                  </div>
+                </div>
+
+                <label style="font-weight: lighter">Documento</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">C.C</span>
+                  </div>
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="customer_document"
+                    (focusout)="validateDocument()"
+                  />
+                  <div class="input-group-append">
+                    <span
+                      class="input-group-text span-error-message"
+                      *ngIf="invalidInput('customer_document') || errorObj.ok"
+                    >
+                      {{ documentErrorMsg }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label style="font-weight: lighter">Apellidos</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="customer_lastname"
+                  />
+                  <div class="input-group-append">
+                    <span
+                      class="input-group-text span-error-message"
+                      *ngIf="invalidInput('customer_lastname')"
+                    >
+                      Apellido no puede estar vacío
+                    </span>
+                  </div>
+                </div>
+                <label style="font-weight: lighter">Telefono</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">+57</span>
+                  </div>
+                  <input
+                    type="number"
+                    class="form-control"
+                    data-inputmask='"mask": "(999) 999-9999"'
+                    data-mask
+                    formControlName="customer_phone"
+                  />
+                </div>
+              </div>
+            </div>
+            <hr />
+            <h4>Datos institucionales</h4>
+            <div class="row">
+              <div class="col-md-6">
+                <label style="font-weight: lighter">Email</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="access_email"
+                  />
+                  <div class="input-group-append">
+                    <span
+                      class="input-group-text span-error-message"
+                      *ngIf="invalidInput('access_email')"
+                    >
+                      {{ emailErrorMsg }}
+                    </span>
+                  </div>
+                </div>
+
+                <label style="font-weight: lighter">Contraseña</label>
+                <div class="input-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    formControlName="access_pass"
+                  />
+                  <div class="input-group-append">
+                    <span
+                      class="input-group-text span-error-message"
+                      *ngIf="invalidInput('access_pass')"
+                    >
+                      Contraseña requerida
+                    </span>
+                  </div>
+                </div>
+
+                <label style="font-weight: lighter">Confirmar contraseña</label>
+
+                <div class="input-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    formControlName="access_pass_confirm"
+                  />
+                  <div class="input-group-append">
+                    <span
+                      class="input-group-text span-error-message"
+                      *ngIf="invalidInput('access_pass_confirm')"
+                    >
+                      No coincide
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label style="font-weight: lighter">Encuesta</label>
+                <div class="input-group">
+                  <select class="form-control" formControlName="survey_id">
+                    <option
+                      [value]="survey.surveyId"
+                      *ngFor="let survey of surveyArray"
+                    >
+                      {{ survey.surveyName }}
+                    </option>
+                  </select>
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <div
+                        class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success"
+                      >
+                        <input
+                          type="checkbox"
+                          class="custom-control-input"
+                          id="customerStateSwitch"
+                          value="false"
+                          formControlName="customer_state"
+                        />
+                        <label
+                          class="custom-control-label"
+                          style="font-weight: lighter"
+                          for="customerStateSwitch"
+                          *ngIf="
+                            formCustomer.get('customer_state')!.value == true
+                          "
+                          >Completada</label
+                        >
+                        <label
+                          class="custom-control-label"
+                          for="customerStateSwitch"
+                          style="font-weight: lighter"
+                          *ngIf="
+                            formCustomer.get('customer_state')!.value == false
+                          "
+                          >Pendiente</label
+                        >
+                      </div>
+                    </span>
+                  </div>
+                </div>
+                <label style="font-weight: lighter">Rol</label>
+                <select class="form-control" formControlName="role_id">
+                  <option *ngFor="let role of roleArray" [value]="role.roleId">
+                    {{ role.roleName }}
+                  </option>
+                </select>
+                <div class="dropdown">
+                  <div class="dropdown-menu"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button
+          class="btn btn-standar-submit"
+          style="width: 15%"
+          type="submit"
+          [disabled]="!formCustomer.valid"
+        >
+          Crear Usuario
+        </button>
+      </div>
+    </form>
+  </section>
+</div>
+
+<ng-template #falseState>
+  <label class="custom-control-label" for="customerStateSwitch"
+    >Pendiente</label
+  >
+</ng-template>

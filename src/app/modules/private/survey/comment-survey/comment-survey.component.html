@@ -1,0 +1,56 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h2>Comentarios</h2>
+  </section>
+  <section class="content">
+    <div class="card">
+      <div class="card-body p-0">
+        <table class="table table-striped projects">
+          <thead>
+            <tr>
+              <th style="width: 2%">ID</th>
+              <th style="width: 88%">Comentario</th>
+              <th class="text-center" style="width: 10%">
+                <a class="btn btn-outline-danger btn-sm" (click)="deleteAllComments()" >
+                  <i class="fas fa-trash"> </i>
+                </a>
+              </th>
+            </tr>
+          </thead>
+          <tbody *ngIf="commentsArray.length == 0">
+            <td style="background-color: rgba(218, 218, 106, 0.521)"></td>
+            <td
+              class="text-center"
+              style="width: 100%; background-color: rgba(218, 218, 106, 0.521)"
+            >
+              No hay comentarios para mostrar
+            </td>
+            <td style="background-color: rgba(218, 218, 106, 0.521)"></td>
+          </tbody>
+          <tbody *ngFor="let comment of commentsArray | paginate:page_size:page_number">
+            <tr *ngIf="commentsArray.length > 0">
+              <td>
+                {{ comment.commentId }}
+              </td>
+              <td>
+                <a>
+                  {{ comment.commentContent }}
+                </a>
+              </td>
+              <td class="project-actions text-right">
+                <a
+                  class="btn btn-danger btn-sm"
+                  (click)="deleteComment(comment.commentId)"
+                >
+                  <i class="fas fa-trash"> </i>
+                  Borrar
+                </a>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>

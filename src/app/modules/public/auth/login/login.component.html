@@ -1,0 +1,59 @@
+<div class="hold-transition login-page">
+  <div class="login-box animated animate__animated animate__backInLeft">
+    <div class="login-logo">
+      <p><b>DESEMPEÑO </b>SG-SST</p>
+    </div>
+    <!-- /.login-logo -->
+    <form [formGroup]="formAuth" (ngSubmit)="login()">
+      <div class="card">
+        <div class="card-body login-card-body">
+          <p class="login-box-msg">
+            Ingrese unicamente con <br /><b>correo institucional</b>
+          </p>
+
+          <div class="input-group mb-3">
+            <input
+              type="email"
+              class="form-control"
+              [ngClass]="{'is-invalid': errorMessage}"
+              placeholder="Email"
+              formControlName="access_email"
+            />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input
+              type="password"
+              class="form-control"
+              [ngClass]="{'is-invalid': errorMessage}"
+              placeholder="Contraseña"
+              formControlName="access_pass"
+            />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col text-center">
+            <div>
+              <button
+                type="submit"
+                class="btn css-button-arrow--blue"
+                [disabled]="!formAuth.valid"
+              >
+                Iniciar Sesión
+              </button>
+            </div>
+            <hr />
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

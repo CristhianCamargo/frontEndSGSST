@@ -1,0 +1,124 @@
+<div class="content-wrapper">
+  <section class="content-header">
+    <h3>Analitica de encuestas</h3>
+  </section>
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Reporte total</h5>
+
+            <div class="card-tools">
+              <button
+                type="button"
+                class="btn btn-tool"
+                data-card-widget="collapse"
+              >
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <p class="text-center">
+                  <strong>Estadisticas por opción</strong>
+                </p>
+
+                <div class="chart">
+                  <!-- Sales Chart Canvas -->
+                  <canvas
+                    id="totalResults"
+                    height="100"
+                    style="height: 100px"
+                  ></canvas>
+                </div>
+                <!-- /.chart-responsive -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-4">
+                <p class="text-center">
+                  <strong>Porcentajes de satisfacción</strong>
+                </p>
+
+                <div class="container">
+                  <canvas
+                    id="donutTotalResult"
+                    style="
+                      min-height: 250px;
+                      height: 250px;
+                      max-height: 250px;
+                      max-width: 100%;
+                    "
+                  ></canvas>
+                </div>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- ./card-body -->
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-sm">
+                <div class="description-block border-right">
+                  <span class="description-percentage text-success"
+                    ><i class="fas fa-caret-up"></i> {{ percentMS }}%</span
+                  >&nbsp;
+                  <span class="description-text">Muy Satisfecho</span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+              <!-- /.col -->
+              <div class="col-sm">
+                <div class="description-block border-right">
+                  <span class="description-percentage text-green"
+                    ><i class="fas fa-caret-up"></i> {{ percentS }}%</span
+                  >&nbsp;
+                  <span class="description-text">Satisfecho</span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+              <!-- /.col -->
+              <div class="col-sm">
+                <div class="description-block border-right">
+                  <span class="description-percentage text-warning"
+                    ><i class="fas fa-minus"></i> {{ percentAS }}%</span
+                  >&nbsp;
+                  <span class="description-text">Algo Satisfecho</span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+              <!-- /.col -->
+              <div class="col-sm">
+                <div class="description-block border-right">
+                  <span class="description-percentage text-orange"
+                    ><i class="fas fa-caret-down"></i> {{ percentI }}%</span
+                  >&nbsp;
+                  <span class="description-text">Insatisfecho</span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+              <!-- /.col -->
+              <div class="col-sm">
+                <div class="description-block">
+                  <span class="description-percentage text-danger"
+                    ><i class="fas fa-caret-down"></i> {{ percentMI }}%</span
+                  >&nbsp;
+                  <span class="description-text">Muy Insatisfecho</span>
+                </div>
+                <!-- /.description-block -->
+              </div>
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+    </div>
+  </section>
+</div>

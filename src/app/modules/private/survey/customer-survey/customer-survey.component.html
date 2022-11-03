@@ -1,0 +1,241 @@
+<div class="content-wrapper animate__animated animate__fadeIn">
+  <section class="content-header">
+    <div class="text-center">
+      <h1 class=""><strong>Desempeño SG-SST</strong></h1>
+      <p>
+        Evaluación de satisfacción del Sistema de Gestión de Seguridad y Salúd
+        en el Trabajo
+      </p>
+    </div>
+  </section>
+  <section class="content">
+    <form [formGroup]="formAnswer">
+      <div class="card">
+        <div class="card card-light collapsed-card shadow-none">
+          <div class="card-header">
+            <div class="card-tools">
+              <button
+                type="button"
+                class="btn btn-outline-light"
+                data-card-widget="collapse"
+              >
+                Guia de opciones <i class="fas fa-plus"></i>
+              </button>
+              &nbsp;
+              <button
+                type="button"
+                class="btn btn-outline-light"
+                (click)="cleanSurvey()"
+              >
+                <i class="fas fa-eraser"></i> Borrar respuestas
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md">
+                <div class="info-box sm shadow-sm">
+                  <span class="info-box-icon" style="background-color: #eb3828"
+                    ><i class="fas fa-angry" style="color: #a1271c"></i
+                  ></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Muy <br />insatisfecho</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="info-box sm shadow-sm">
+                  <span class="info-box-icon" style="background-color: #e56128"
+                    ><i class="fas fa-frown" style="color: #8f3a16"></i
+                  ></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Insatisfecho</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="info-box sm shadow-sm">
+                  <span class="info-box-icon" style="background-color: #d0c438"
+                    ><i class="fas fa-meh" style="color: #a89e30"></i
+                  ></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Algo <br />Satisfecho</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="info-box sm shadow-sm">
+                  <span class="info-box-icon" style="background-color: #42cf38"
+                    ><i class="fas fa-smile-beam" style="color: #1c9a13"></i
+                  ></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Satisfecho</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="info-box sm shadow-sm">
+                  <span class="info-box-icon" style="background-color: #209b17"
+                    ><i class="fas fa-laugh-beam" style="color: #15790d"></i
+                  ></span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Muy <br />Satisfecho</span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+          <table class="table">
+            <thead>
+              <tr class="text-center justify-content-center">
+                <th style="width: 5%">#</th>
+                <th style="width: 55%">Pregunta</th>
+                <th style="width: 8%">
+                  <i
+                    class="far fa-angry"
+                    style="color: #eb3828; font-size: 1.5em"
+                  ></i>
+                </th>
+                <th style="width: 8%">
+                  <i
+                    class="far fa-frown"
+                    style="color: #f5692d; font-size: 1.5em"
+                  ></i>
+                </th>
+                <th style="width: 8%">
+                  <i
+                    class="far fa-meh"
+                    style="color: #ebdd45; font-size: 1.5em"
+                  ></i>
+                </th>
+                <th style="width: 8%">
+                  <i
+                    class="far fa-smile-beam"
+                    style="color: #44db39; font-size: 1.5em"
+                  ></i>
+                </th>
+                <th style="width: 8%">
+                  <i
+                    class="far fa-laugh-beam"
+                    style="color: #1f8f17; font-size: 1.5em"
+                  ></i>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-center" *ngFor="let question of questionArray">
+                <td>{{ question.questionId }}</td>
+                <td>
+                  <p class="text-left">{{ question.questionContent }}</p>
+                </td>
+                <td>
+                  <div class="custom-control custom-radio">
+                    <input
+                      class="custom-control-input custom-control-input-danger custom-control-input-outline"
+                      align="center"
+                      type="radio"
+                      [id]="'mi' + question.questionId"
+                      [name]="'res' + question.questionId"
+                      value="1"
+                      (click)="pushArray(question.questionId, 1)"
+                    />
+                    <label
+                      [for]="'mi' + question.questionId"
+                      class="custom-control-label"
+                    ></label>
+                  </div>
+                </td>
+                <td>
+                  <div class="custom-control custom-radio">
+                    <input
+                      class="custom-control-input custom-control-input-danger custom-control-input-outline"
+                      type="radio"
+                      [id]="'in' + question.questionId"
+                      [name]="'res' + question.questionId"
+                      value="2"
+                      (click)="pushArray(question.questionId, 2)"
+                    />
+                    <label
+                      [for]="'in' + question.questionId"
+                      class="custom-control-label"
+                    ></label>
+                  </div>
+                </td>
+                <td>
+                  <div class="custom-control custom-radio">
+                    <input
+                      class="custom-control-input custom-control-input-danger custom-control-input-outline"
+                      type="radio"
+                      [id]="'ne' + question.questionId"
+                      [name]="'res' + question.questionId"
+                      value="3"
+                      (click)="pushArray(question.questionId, 3)"
+                    />
+                    <label
+                      [for]="'ne' + question.questionId"
+                      class="custom-control-label"
+                    ></label>
+                  </div>
+                </td>
+                <td>
+                  <div class="custom-control custom-radio">
+                    <input
+                      class="custom-control-input custom-control-input-danger custom-control-input-outline"
+                      type="radio"
+                      [id]="'sa' + question.questionId"
+                      [name]="'res' + question.questionId"
+                      value="4"
+                      (click)="pushArray(question.questionId, 4)"
+                    />
+                    <label
+                      [for]="'sa' + question.questionId"
+                      class="custom-control-label"
+                    ></label>
+                  </div>
+                </td>
+                <td>
+                  <div class="custom-control custom-radio">
+                    <input
+                      class="custom-control-input custom-control-input-danger custom-control-input-outline"
+                      type="radio"
+                      [id]="'ms' + question.questionId"
+                      [name]="'res' + question.questionId"
+                      value="5"
+                      (click)="pushArray(question.questionId, 5)"
+                    />
+                    <label
+                      [for]="'ms' + question.questionId"
+                      class="custom-control-label"
+                    ></label>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="text-center">
+        <textarea
+          name="comment"
+          id="comment-area"
+          cols="80"
+          rows="2"
+          placeholder="Comentarios (Opcional)"
+        ></textarea>
+      </div>
+      <div class="text-center">
+        <button (click)="submitAnswerSurvey()" class="btn btn-standar-submit">
+          Enviar &nbsp;<i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </form>
+  </section>
+</div>
