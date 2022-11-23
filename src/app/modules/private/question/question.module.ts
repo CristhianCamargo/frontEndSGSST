@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormsModule} from '@angular/forms'
+import { FormsModule } from '@angular/forms'
 
 import { QuestionRoutingModule } from './question-routing.module';
 import { AdminQuestionComponent } from './admin-question/admin-question.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -16,7 +17,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     QuestionRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ]
 })
 export class QuestionModule { }

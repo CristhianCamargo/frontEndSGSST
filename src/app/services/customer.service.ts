@@ -74,4 +74,14 @@ export class CustomerService {
       return customer;
     }
   }
+
+  updateCustomerStateLocalStorage() {
+    const url = `${this.baseUrl}/customer/state`;
+    return this.http.put<any>(url, {});
+  }
+
+  updateCustomerStateFalse() {
+    const url = `${this.baseUrl}/customer/stateFalse`;
+    return this.http.get<any>(url);
+  }
 }

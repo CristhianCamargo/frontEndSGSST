@@ -4,6 +4,8 @@ import {RouterModule} from '@angular/router';
 import { NavbarDashComponent } from './navbar-dash/navbar-dash.component';
 import { SidebarDashComponent } from './sidebar-dash/sidebar-dash.component';
 import { FooterDashComponent } from './footer-dash/footer-dash.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { NavbarCustomerDashComponent } from './navbar-customer-dash/navbar-customer-dash.component';
 
 
 
@@ -11,7 +13,9 @@ import { FooterDashComponent } from './footer-dash/footer-dash.component';
   declarations: [
     NavbarDashComponent,
     SidebarDashComponent,
-    FooterDashComponent
+    FooterDashComponent,
+    UnauthorizedComponent,
+    NavbarCustomerDashComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +24,8 @@ import { FooterDashComponent } from './footer-dash/footer-dash.component';
   exports: [
     NavbarDashComponent,
     SidebarDashComponent,
-    FooterDashComponent
+    FooterDashComponent,
+    NavbarCustomerDashComponent
   ]
 })
 export class SharedModule { }

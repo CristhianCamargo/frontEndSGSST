@@ -42,8 +42,9 @@ export class AdminCustomerComponent implements OnInit {
   modal!: NgbModalRef;
   customerIdSelect!: number;
   formUpdateCustomer: FormGroup;
-  page_size: number = 10;
-  page_number: number = 1;
+  p: number = 1;
+  filterCustomer:any = "";
+
 
   constructor(
     private customerService: CustomerService,

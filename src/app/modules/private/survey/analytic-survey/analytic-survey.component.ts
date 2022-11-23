@@ -27,6 +27,7 @@ import {
 } from 'chart.js';
 import { AnswerService } from 'src/app/services/answer.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import Swal from 'sweetalert2';
 
 Chart.register(ArcElement,
   LineElement,
@@ -88,8 +89,6 @@ export class AnalyticSurveyComponent implements OnInit {
     await this.getAnswerByMI();
     this.createLinearChart();
     this.createDonutChart();
-
-
   }
 
   createLinearChart() {
@@ -259,6 +258,63 @@ export class AnalyticSurveyComponent implements OnInit {
     } else {
       return Math.ceil(percent);
     }*/
+  }
+
+  deleteAnswer() {
+    Swal.fire({
+      title: '¿Esta seguro de reiniciar estadisticas?',
+      text: '(Se borraran todas las respuestas existentes)',
+      showDenyButton: false,
+      showCancelButton: true,
+      confirmButtonText: 'Borrar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.answerService.deleteAllAnswer().subscribe((res) => {
+          if (res.message == 'OK') {
+            console.log('🤗');
+            this.updateCustomerStateFalse();
+            this.updateCustomerStateLocalStorage();
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Resultados borrados',
+              showConfirmButton: false,
+              timer: 1000
+            });
+          } else {
+            console.log('😥', res.message.error);
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Error reiniciando estadisticas',
+              showConfirmButton: false,
+              timer: 1000
+            });
+          }
+        })
+      }
+    })
+
+  }
+
+  updateCustomerStateFalse() {
+    this.customerService.updateCustomerStateFalse().subscribe((res) => {
+      if (res.message == 'OK') {
+        console.log('🤗');
+
+      } else {
+        console.log('😥', res.message.error);
+      }
+    })
+  }
+  updateCustomerStateLocalStorage() {
+    this.customerService.updateCustomerStateLocalStorage().subscribe((res) => {
+
+      if (res.message == 'OK') {
+
+        localStorage.setItem('authCredential', JSON.stringify(res.resTmp));
+      }
+    })
   }
 
 

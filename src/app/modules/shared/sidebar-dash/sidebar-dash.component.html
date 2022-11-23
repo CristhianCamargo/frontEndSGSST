@@ -1,26 +1,40 @@
-<aside class="main-sidebar  sidebar-dark-lightblue elevation-4">
+<aside class="main-sidebar sidebar-dark-lightblue elevation-4 background-opacity">
   <!-- Brand Logo -->
-  <a href="#" class="brand-link elevation-4">
-    <img src="../../../../assets/img/logonavbar.png" alt="SantotoLogo" class="brand-image img-circle elevation-3" style="opacity: .8">
+  <a href="/private/dashboard/home" class="brand-link elevation-4">
+    <img
+      src="../../../../assets/img/logonavbar.png"
+      alt="SantotoLogo"
+      class="brand-image img-circle elevation-3"
+      style="opacity: 0.8"
+    />
     <span class="brand-text font-weight-light">SG-SST</span>
   </a>
 
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user (optional) -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <div class="image">
-        <img src="../../../../assets/img/tmp.png" class="img-circle elevation-2" alt="User Image">
-      </div>
-      <div class="info">
-        <a href="#" class="d-block">Administrador</a>
+    <div class="user-panel mt-3 pb-3 mb-3 text-center">
+      
+      <div class="text-center">
+        <a class="d-block">{{ customer.customerFirstname }}</a>
+        <a class="d-block"
+          ><small>{{ customer.customerLastname }}</small>
+        </a>
+        <a
+          ><small>C.C: {{ customer.customerDocument }} | Cel: {{ customer.customerPhone }} </small>
+        </a>
+        <span class="d-block badge badge-info mt-2">Administrador</span>
       </div>
     </div>
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-legacy text-sm" data-widget="treeview" role="menu" data-accordion="false">
-        
+      <ul
+        class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-legacy text-sm"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
         <li class="nav-header">PANEL DE CONTROL</li>
         <li class="nav-item menu-open">
           <a href="#" class="nav-link">
@@ -32,19 +46,25 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a [routerLink]="['/private/dashboard/customer/create']" class="nav-link">
+              <a
+                [routerLink]="['/private/dashboard/customer/create']"
+                class="nav-link"
+              >
                 <i class="fas fa-user-plus nav-icon"></i>
                 <p>Crear Usuario</p>
               </a>
             </li>
             <li class="nav-item">
-              <a [routerLink]="['/private/dashboard/customer/admin']" class="nav-link">
+              <a
+                [routerLink]="['/private/dashboard/customer/admin']"
+                class="nav-link"
+              >
                 <i class="fas fa-users-cog nav-icon"></i>
                 <p>Administrar usuarios</p>
               </a>
             </li>
           </ul>
-        </li>        
+        </li>
         <li class="nav-item menu-open">
           <a href="#" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
@@ -54,21 +74,29 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            
             <li class="nav-item">
-              <a [routerLink]="['/private/dashboard/question/admin']" class="nav-link">
+              <a
+                [routerLink]="['/private/dashboard/question/admin']"
+                class="nav-link"
+              >
                 <i class="fas fa-clipboard-list nav-icon"></i>
-                <p>Adminstrar Preguntas</p>
+                <p>Administrar Preguntas</p>
               </a>
             </li>
             <li class="nav-item">
-              <a [routerLink]="['/private/dashboard/survey/commentSurvey']" class="nav-link">
+              <a
+                [routerLink]="['/private/dashboard/survey/commentSurvey']"
+                class="nav-link"
+              >
                 <i class="fas fa-comments nav-icon"></i>
                 <p>Listar Comentarios</p>
               </a>
             </li>
             <li class="nav-item">
-              <a [routerLink]="['/private/dashboard/survey/analyticSurvey']" class="nav-link">
+              <a
+                [routerLink]="['/private/dashboard/survey/analyticSurvey']"
+                class="nav-link"
+              >
                 <i class="fas fa-chart-bar nav-icon"></i>
                 <p>Analitica</p>
               </a>

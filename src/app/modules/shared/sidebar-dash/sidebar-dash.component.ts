@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
   selector: 'app-sidebar-dash',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarDashComponent implements OnInit {
 
-  constructor() { }
+  public customer: any;
+  
+  constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
+    this.customer = this.customerService.getCustomerAuth();
   }
 
 }

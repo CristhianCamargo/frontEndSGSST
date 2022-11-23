@@ -30,6 +30,7 @@ export class AdminQuestionComponent implements OnInit {
   formUpdateQuestion: FormGroup;
   modal!: NgbModalRef;
   questionIdSelect!: number;
+  p: number = 1;
 
   constructor(private formBuilder: FormBuilder, private customerService: CustomerService, private answerService: AnswerService, private questionService: QuestionService, private modalService: NgbModal) {
     this.formQuestion = this.formBuilder.group({

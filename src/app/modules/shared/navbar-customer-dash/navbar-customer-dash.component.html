@@ -1,0 +1,46 @@
+<nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+  <div class="container">
+    <a href="/private-customer/dashboard-customer/home" class="navbar-brand">
+      <img
+        src="../../../../assets/img/logonavbar.png"
+        alt="SantotoLogo"
+        class="brand-image img-circle elevation-3"
+        style="opacity: 0.8"
+      />
+      <span class="brand-text font-weight-light">SG-SST</span>
+    </a>
+
+    <ul class="navbar-nav">
+      <li class="nav-item d-none d-sm-inline-block">
+        <a
+          [routerLink]="['/private-customer/dashboard-customer/survey/customerSurvey']"
+          class="nav-link"
+          >Encuesta</a
+        >
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a
+          [routerLink]="['/private-customer/dashboard-customer/survey/resultCustomerSurvey']"
+          class="nav-link"
+          >Ver resultados</a
+        >
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="fas fa-user-circle"></i>
+          {{ customer.customerFirstname }}&nbsp;{{ customer.customerLastname }}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logOut()">
+          <i class="fas fa-sign-out-alt"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

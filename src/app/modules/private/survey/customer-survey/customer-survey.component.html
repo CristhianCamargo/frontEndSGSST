@@ -8,7 +8,21 @@
       </p>
     </div>
   </section>
-  <section class="content">
+  <section class="content text-center" *ngIf="customer.customerState">
+    <div
+      class="container"
+      style="
+        border-radius: 5px;
+        background-color: rgba(214, 214, 38, 0.567);
+        padding: 20px 10px 10px 3px;
+        font-size: medium;
+        width: 70%;
+      "
+    >
+      <p>No tiene encuestas por contestar</p>
+    </div>
+  </section>
+  <section class="content" *ngIf="!customer.customerState">
     <form [formGroup]="formAnswer">
       <div class="card">
         <div class="card card-light collapsed-card shadow-none">
@@ -20,14 +34,6 @@
                 data-card-widget="collapse"
               >
                 Guia de opciones <i class="fas fa-plus"></i>
-              </button>
-              &nbsp;
-              <button
-                type="button"
-                class="btn btn-outline-light"
-                (click)="cleanSurvey()"
-              >
-                <i class="fas fa-eraser"></i> Borrar respuestas
               </button>
             </div>
           </div>

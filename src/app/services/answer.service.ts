@@ -28,38 +28,42 @@ export class AnswerService {
         let params = new HttpParams();
         params = params.append("option_id", urlOption);
         const url = `${this.baseUrl}/answer/option`;
-        return this.http.get(url, {params});
+        return this.http.get(url, { params });
 
     }
     getAnswerByQuestion(urlOption: number): Observable<any> {
         let params = new HttpParams();
         params = params.append("question_id", urlOption);
         const url = `${this.baseUrl}/answer/question`;
-        return this.http.get(url, {params});
+        return this.http.get(url, { params });
 
     }
     getAnswerByCustomer(urlOption: number): Observable<any> {
         let params = new HttpParams();
         params = params.append("customer_id", urlOption);
         const url = `${this.baseUrl}/answer/customer`;
-        return this.http.get(url, {params});
+        return this.http.get(url, { params });
 
     }
 
-    getAnswerByQuestionAndCustomer(urlOption: number): Observable<any>{
+    getAnswerByQuestionAndCustomer(urlOption: number): Observable<any> {
         let params = new HttpParams();
         params = params.append("question_id", urlOption);
         const url = `${this.baseUrl}/answer/quesCustomer`;
-        return this.http.get(url, {params});
+        return this.http.get(url, { params });
     }
 
     getAnswerByOQ(urlQuestion: number, urlOption: number): Observable<any> {
         let params = new HttpParams();
         params = params.append("question_id", urlQuestion).append("option_id", urlOption);
         const url = `${this.baseUrl}/answer/quesOption`;
-        return this.http.get(url, {params});
+        return this.http.get(url, { params });
     }
 
-
+    deleteAllAnswer() {
+        const url = `${this.baseUrl}/answer`;
+        return this.http.delete<any>(url);
+    }
+    
 
 }

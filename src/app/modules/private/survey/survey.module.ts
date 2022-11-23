@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AnalyticSurveyComponent } from './analytic-survey/analytic-survey.component';
 import { CommentSurveyComponent } from './comment-survey/comment-survey.component';
 import { ResultCustomerSurveyComponent } from './result-customer-survey/result-customer-survey.component';
-import {PaginatePipe} from '../../../pipes/paginate.pipe'
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -16,12 +16,12 @@ import {PaginatePipe} from '../../../pipes/paginate.pipe'
     AnalyticSurveyComponent,
     CommentSurveyComponent,
     ResultCustomerSurveyComponent,
-    PaginatePipe
   ],
   imports: [
     CommonModule,
     SurveyRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class SurveyModule { }

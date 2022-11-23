@@ -1,7 +1,9 @@
 <div class="hold-transition login-page">
   <div class="login-box animated animate__animated animate__backInLeft">
-    <div class="login-logo">
-      <p><b>DESEMPEÑO </b>SG-SST</p>
+    <div
+      class="login-logo font-title"
+    >
+      <p>DESEMPEÑO SG-SST</p>
     </div>
     <!-- /.login-logo -->
     <form [formGroup]="formAuth" (ngSubmit)="login()">
@@ -15,7 +17,7 @@
             <input
               type="email"
               class="form-control"
-              [ngClass]="{'is-invalid': errorMessage}"
+              [ngClass]="{ 'is-invalid': errorMessage }"
               placeholder="Email"
               formControlName="access_email"
             />
@@ -29,7 +31,7 @@
             <input
               type="password"
               class="form-control"
-              [ngClass]="{'is-invalid': errorMessage}"
+              [ngClass]="{ 'is-invalid': errorMessage }"
               placeholder="Contraseña"
               formControlName="access_pass"
             />

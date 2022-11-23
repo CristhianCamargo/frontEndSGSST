@@ -10,6 +10,8 @@ import { ContainerModule } from './modules/container/container.module';
 import { AuthInterceptor } from './modules/shared/interceptor/auth-interceptor.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { SharedModule } from './modules/shared/shared.module';
+//import { FilterPipe } from './pipes/filter.pipe';
 //import { PaginatePipe } from './pipes/paginate.pipe';
 
 
@@ -32,7 +34,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-    
+
   }],
   bootstrap: [AppComponent]
 })

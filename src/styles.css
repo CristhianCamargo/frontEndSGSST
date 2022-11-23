@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700&display=swap');
+
 
 .font-rubik-set {
   font-family: "Rubik", sans-serif;
@@ -19,16 +21,16 @@
   border: none;
   /*background-color: #3d348b;
     */
-  background-color: #5e6fff;
+  background-color: #545454;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
 .css-button-arrow--blue:hover {
-  border-radius: 5px;
   padding-right: 24px;
   padding-left: 8px;
+  background-color: #a0a0a0;
 }
 .css-button-arrow--blue:hover:after {
   opacity: 1;
@@ -136,5 +138,24 @@
   background-color: rgba(255, 0, 0, 0.11);
   color: rgb(176, 0, 0);
   font-size: small;
+}
 
+.background-opacity {
+  background-image: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.668),
+      rgba(0, 0, 0, 0.525)
+    ),
+    url(https://besthqwallpapers.com/Uploads/28-3-2019/85230/thumb2-black-squares-metal-texture-4k-squares-patterns-metal-backgrounds-metal-textures.jpg);
+} 
+
+.font-title{
+  font-family: 'Nunito Sans', sans-serif;
+  background: #606060;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.653),
+    0px -1px 1px rgba(54, 54, 54, 0.3);
 }

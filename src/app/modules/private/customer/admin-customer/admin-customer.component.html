@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+<div class="content-wrapper animate__animated animate__fadeIn">
   <section class="content-header">
     <div class="row">
       <div class="col-lg-3 col-6">
@@ -41,6 +41,22 @@
   </section>
   <section class="content">
     <div class="card">
+      <div class="card-header input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default"
+            >Filtrar:
+          </span>
+        </div>
+        <input
+          type="text"
+          class="forms-control"
+          aria-label="Small"
+          aria-describedby="inputGroup-sizing-default"
+          placeholder="Buscar"
+          [(ngModel)]="filterCustomer"
+          name="filterCustomer"
+        />
+      </div>
       <div class="card-body p-0">
         <table class="table table-striped projects">
           <thead>
@@ -54,7 +70,10 @@
           </thead>
           <tbody
             *ngFor="
-              let customer of customerArray"
+              let customer of customerArray
+                | paginate: { itemsPerPage: 10, currentPage: p }
+                | filter: filterCustomer
+            "
           >
             <tr>
               <td>
@@ -111,15 +130,17 @@
               </td>
               <td class="project-actions text-right">
                 <a
-                  class="btn btn-info btn-sm"
+                  class="btn btn-outline-info btn-sm"
+                  style="margin-right: 10px; margin-left: 10px"
                   (click)="openModal(editCustomer, customer.customerId)"
                 >
                   <i class="fas fa-pencil-alt"> </i>
                   Editar
                 </a>
-                &nbsp;
+                
                 <a
-                  class="btn btn-danger btn-sm"
+                  class="btn btn-outline-danger btn-sm"
+                  style="margin-right: 10px; margin-left: 10px;"
                   (click)="deleteCustomer(customer.customerId)"
                 >
                   <i class="fas fa-trash"> </i>
@@ -129,6 +150,9 @@
             </tr>
           </tbody>
         </table>
+        <div class="mt-3">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
       </div>
     </div>
   </section>

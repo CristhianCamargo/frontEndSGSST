@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { RoleValidateGuard } from '../guards/role-validate.guard';
 import { ValidateTokenGuard } from '../guards/validate-token.guard';
 
 export const ROUTESDASHBOARD: Routes = [
@@ -14,7 +15,6 @@ export const ROUTESDASHBOARD: Routes = [
         loadChildren: () =>
             import('../modules/private/customer/customer.module').then((m) => m.CustomerModule),
             canActivate: [ValidateTokenGuard], canLoad: [ValidateTokenGuard]
-            
     },
     {
         path: 'dashboard/question',

@@ -11,8 +11,7 @@ import Swal from 'sweetalert2';
 export class CommentSurveyComponent implements OnInit {
 
   public commentsArray: any[] = [];
-  page_number: number = 1;
-  page_size: number = 10;
+  p: number= 1;
 
   constructor(public customerService: CustomerService, public commentService: CommentService) { }
 

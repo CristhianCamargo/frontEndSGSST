@@ -1,95 +1,165 @@
-<div class="content-wrapper">
-  <section class="content-header"><h3>Resultados</h3></section>
-  <section class="content">
-    <div class="card bg-gradient-info">
-      <div class="card-header border-0">
-        <h3 class="card-title">
-          <i class="fas fa-th mr-1"></i>
-          Sales Graph
-        </h3>
-
-        <div class="card-tools">
-          <button
-            type="button"
-            class="btn bg-info btn-sm"
-            data-card-widget="collapse"
-          >
-            <i class="fas fa-minus"></i>
-          </button>
-          <button
-            type="button"
-            class="btn bg-info btn-sm"
-            data-card-widget="remove"
-          >
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-      </div>
-      <div class="card-body">
-        <canvas
-          class="chart"
-          id="line-chart"
-          style="
-            min-height: 250px;
-            height: 250px;
-            max-height: 250px;
-            max-width: 100%;
-          "
-        ></canvas>
-      </div>
-      <!-- /.card-body -->
-      <div class="card-footer bg-transparent">
-        <div class="row">
-          <div class="col-4 text-center">
-            <input
-              type="text"
-              class="knob"
-              data-readonly="true"
-              value="20"
-              data-width="60"
-              data-height="60"
-              data-fgColor="#39CCCC"
-            />
-
-            <div class="text-white">Mail-Orders</div>
-          </div>
-          <!-- ./col -->
-          <div class="col-4 text-center">
-            <input
-              type="text"
-              class="knob"
-              data-readonly="true"
-              value="50"
-              data-width="60"
-              data-height="60"
-              data-fgColor="#39CCCC"
-            />
-
-            <div class="text-white">Online</div>
-          </div>
-          <!-- ./col -->
-          <div class="col-4 text-center">
-            <input
-              type="text"
-              class="knob"
-              data-readonly="true"
-              value="30"
-              data-width="60"
-              data-height="60"
-              data-fgColor="#39CCCC"
-            />
-
-            <div class="text-white">In-Store</div>
-          </div>
-          <!-- ./col -->
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.card-footer -->
+<div class="content-wrapper animate__animated animate__fadeIn">
+  <section class="content-header">
+    <div class="text-center">
+      <h1 class=""><strong>Resultados de la encuesta</strong></h1>
+      <p>
+        Visualización del nivel de satisfacción general de los encuestados y tus
+        resultados personales.
+      </p>
     </div>
+  </section>
+  <section class="content text-center" *ngIf="!customer.customerState">
+    <div
+      class="container"
+      style="
+        border-radius: 5px;
+        background-color: rgba(214, 214, 38, 0.567);
+        padding: 20px 10px 10px 3px;
+        font-size: medium;
+        width: 70%;
+      "
+    >
+      <p>Aun no tiene resultados de la ecuesta</p>
+    </div>
+  </section>
+  <section class="content" *ngIf="customer.customerState">
+    <div class="container">
+      <div class="row">
+        <div class="col-md">
+          <div
+            class="info-box bg-gradient-success"
+            *ngIf="
+              satisfactionGeneral == 'Muy Satisfecho' ||
+              satisfactionGeneral == 'Satisfecho'
+            "
+          >
+            <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
 
+            <div class="info-box-content">
+              <span class="info-box-text">Satisfacción General</span>
+              <span class="info-box-number">{{ satisfactionGeneral }}</span>
+
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  [ngStyle]="{ 'width.%': averageGeneral }"
+                ></div>
+              </div>
+              <span class="progress-description"> {{ averageGeneral }} % </span>
+            </div>
+          </div>
+          <div
+            class="info-box bg-gradient-warning"
+            *ngIf="satisfactionGeneral == 'Algo Satisfecho'"
+          >
+            <span class="info-box-icon"><i class="far fa-meh"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Satisfacción General</span>
+              <span class="info-box-number">{{ satisfactionGeneral }}</span>
+
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  [ngStyle]="{ 'width.%': averageGeneral }"
+                ></div>
+              </div>
+              <span class="progress-description"> {{ averageGeneral }} % </span>
+            </div>
+          </div>
+          <div
+            class="info-box bg-gradient-danger"
+            *ngIf="
+              satisfactionGeneral == 'Insatisfecho' ||
+              satisfactionGeneral == 'Muy Insatisfecho'
+            "
+          >
+            <span class="info-box-icon"><i class="far fa-meh"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Satisfacción General</span>
+              <span class="info-box-number">{{ satisfactionGeneral }}</span>
+
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  [ngStyle]="{ 'width.%': averageGeneral }"
+                ></div>
+              </div>
+              <span class="progress-description"> {{ averageGeneral }} % </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md">
+          <div
+            class="info-box bg-gradient-success"
+            *ngIf="
+              satisfaction == 'Muy Satisfecho' || satisfaction == 'Satisfecho'
+            "
+          >
+            <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Satisfacción personal</span>
+              <span class="info-box-number">{{ satisfaction }}</span>
+
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  [ngStyle]="{ 'width.%': average }"
+                ></div>
+              </div>
+              <span class="progress-description"> {{ average }} % </span>
+            </div>
+          </div>
+          <div
+            class="info-box bg-gradient-warning"
+            *ngIf="satisfaction == 'Algo Satisfecho'"
+          >
+            <span class="info-box-icon"><i class="far fa-meh"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Satisfacción personal</span>
+              <span class="info-box-number">{{ satisfaction }}</span>
+
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  [ngStyle]="{ 'width.%': average }"
+                ></div>
+              </div>
+              <span class="progress-description"> {{ average }} % </span>
+            </div>
+          </div>
+          <div
+            class="info-box bg-gradient-danger"
+            *ngIf="
+              satisfaction == 'Muy Insatisfecho' ||
+              satisfaction == 'Insatisfecho'
+            "
+          >
+            <span class="info-box-icon"
+              ><i class="far fa-thumbs-down"></i
+            ></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Satisfacción personal</span>
+              <span class="info-box-number">{{ satisfaction }}</span>
+
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  [ngStyle]="{ 'width.%': average }"
+                ></div>
+              </div>
+              <span class="progress-description"> {{ average }} % </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="card">
-      <div class="card-header">Sus respuestas</div>
+      <div class="card-header">Tus respuestas</div>
       <div class="card-body p-0">
         <table class="table table-striped projects">
           <thead>
@@ -111,7 +181,7 @@
               </td>
               <td class="project_progress">
                 <small>
-                  {{ arrayAnswerByQuestion[question.questionId] }}
+                  {{ arrayOptionAnswer[question.questionId] }}
                 </small>
               </td>
             </tr>

@@ -15,18 +15,22 @@ export class ResultCustomerSurveyComponent implements OnInit {
   public answerArray: any[] = [];
   public countAnswerByCustomer: any = 0;
   public average: any = 0;
+  public averageGeneral: any = 0;
   public satisfaction: any = "";
+  public satisfactionGeneral: any = "";
   public arrayAnswerByQuestion: any[] = [];
+  public arrayOption: any[] = [];
+  public arrayOptionAnswer: any[] = []
 
   constructor(private customerService: CustomerService, private answerService: AnswerService) { }
 
   async ngOnInit(): Promise<void> {
     this.customer = this.customerService.getCustomerAuth();
     await this.getQuestion();
-    this.getAnswerByCustomer();
+    await this.getAnswer();
+    await this.getAnswerByCustomer();
     await this.getAnswerByQuestionAndCustomer();
-    console.log("Aquii", this.arrayAnswerByQuestion);
-
+    await this.getAnswerByQuestionCustomer();
   }
 
   getQuestion() {
@@ -39,10 +43,28 @@ export class ResultCustomerSurveyComponent implements OnInit {
   }
 
   getAnswer() {
-    this.customerService.getCustomer("/answer/").subscribe((res) => {
-      this.answerArray = res.question;
+    return new Promise<void>((resolve, reject) => {
+      this.customerService.getCustomer("/answer/").subscribe((res) => {
+        this.answerArray = res.answer;
+        this.operationGeneral();
+        resolve();
+      });
     });
   }
+
+  operationGeneral() {
+    let resultOptionsId = 0;
+    for (let i = 0; i < this.answerArray.length; i++) {
+      resultOptionsId += this.answerArray[i].optionId;
+
+    }
+    this.averageGeneral = (resultOptionsId * 100) / (this.answerArray.length * 5);
+
+    this.averageGeneral = Math.floor(this.averageGeneral);
+
+    this.satisfactionGeneral = this.satistactionCalc(this.averageGeneral);
+  }
+
 
   /**
    * Nivel de satisfacción del cliente
@@ -52,6 +74,7 @@ export class ResultCustomerSurveyComponent implements OnInit {
 
       this.answerService.getAnswerByCustomer(this.customer.customerId).subscribe((res) => {
         this.countAnswerByCustomer = res.answerByCustomer;
+        this.arrayOption = res.answerByCustomer;
 
         this.operation();
         resolve();
@@ -65,6 +88,8 @@ export class ResultCustomerSurveyComponent implements OnInit {
       resultOptionsId += this.countAnswerByCustomer[i].optionId;
     }
     this.average = (resultOptionsId * 100) / (this.countAnswerByCustomer.length * 5);
+
+    this.average = Math.floor(this.average);
 
     this.satisfaction = this.satistactionCalc(this.average);
   }
@@ -96,15 +121,32 @@ export class ResultCustomerSurveyComponent implements OnInit {
       for (let i = 0; i < this.questionArray.length; i++) {
         this.answerService.getAnswerByQuestionAndCustomer(this.questionArray[i].questionId).subscribe((res) => {
           responseTmp = res.answerByQuestionCustomer;
-          console.log(responseTmp);
-          
 
-          this.arrayAnswerByQuestion[this.questionArray[i].questionId] = responseTmp
+          this.arrayAnswerByQuestion[this.questionArray[i].questionId] = JSON.stringify(responseTmp)
           resolve();
         });
       }
     }
     );
+  }
+
+  getAnswerByQuestionCustomer() {
+    return new Promise<void>((resolve, reject) => {
+      for (let i = 0; i < this.arrayOption.length; i++) {
+        this.arrayOptionAnswer[this.arrayOption[i].questionId] = this.arrayOption[i].answer_option.option_name;
+        resolve();
+      }
+    });
+  }
+
+  updateCustomerStateLocalStorage() {
+    this.customerService.updateCustomerStateLocalStorage().subscribe((res) => {
+
+      if (res.message == 'OK') {
+
+        localStorage.setItem('authCredential', JSON.stringify(res.resTmp));
+      }
+    })
   }
 
 }
