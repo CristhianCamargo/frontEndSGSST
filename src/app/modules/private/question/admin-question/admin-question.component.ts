@@ -80,7 +80,9 @@ export class AdminQuestionComponent implements OnInit {
           timer: 1000
         });
         this.getQuestion();
-        this.formQuestion.reset();
+        //this.formQuestion.reset();
+        let tmp = document.getElementById("question-field") as HTMLInputElement;
+        tmp.value = "";
         console.log('🤗');
       } else {
         console.log('😥', message.error);
