@@ -113,8 +113,6 @@ export class CreateCustomerComponent implements OnInit {
           console.log('😥', message.error);
         }
       });
-
-    console.log(this.formCustomer.value);
   }
 
   verifyPass(campo1: string, campo2: string) {

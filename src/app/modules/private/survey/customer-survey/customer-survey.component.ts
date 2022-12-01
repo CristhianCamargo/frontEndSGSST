@@ -61,8 +61,6 @@ export class CustomerSurveyComponent implements OnInit {
     } else {
       this.jsonReqArray.push(jsonReq);
     }
-
-    console.log(this.jsonReqArray);
   }
 
   updateCustomerStateLocalStorage() {
@@ -90,7 +88,6 @@ export class CustomerSurveyComponent implements OnInit {
     });
     if (this.jsonReqArray.length == this.questionArray.length) {
       this.jsonReqArray.forEach((body) => {
-        console.log(body);
         this.answerService.addAnswer(body).subscribe((message) => {
 
           if (message == 'OK') {

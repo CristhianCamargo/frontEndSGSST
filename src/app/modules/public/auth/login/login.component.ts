@@ -55,7 +55,6 @@ export class LoginComponent implements OnInit {
       } else {
         this.spinner.hide();
         this.errorMessage = res;
-        console.log(this.errorMessage);
         if (this.errorMessage) {
           Toast.fire({
             icon: 'error',

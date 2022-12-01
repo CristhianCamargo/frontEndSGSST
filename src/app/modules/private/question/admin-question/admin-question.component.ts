@@ -157,10 +157,8 @@ export class AdminQuestionComponent implements OnInit {
     for (let i = 0; i < this.countAnswerByQuestion.length; i++) {
       this.resultOptionsId += this.countAnswerByQuestion[i].optionId;
     }
-    console.log(this.resultOptionsId);
     this.average = (this.resultOptionsId * 100) / (this.countAnswerByQuestion.length * 5);
     this.satistactionCalc(this.resultOptionsId);
-    console.log(this.average);
 
   }
 
